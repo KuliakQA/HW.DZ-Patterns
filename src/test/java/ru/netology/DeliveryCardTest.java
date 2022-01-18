@@ -29,7 +29,7 @@ public class DeliveryCardTest {
     @Test
     public void shouldSuccessfulSendValidForm() {
         Configuration.holdBrowserOpen = true;
-        FormInfo info = DataGenerator.Form.generateInfo("ru");
+        FormInfo info = DataGenerator.generateInfo("ru");
         $("[data-test-id='city'] input").setValue(info.getCity());
         String date = dateFormat(8);
         $("[data-test-id=date] input").doubleClick();
