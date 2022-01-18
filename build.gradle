@@ -15,11 +15,14 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.projectlombok:lombok:1.18.20'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
     implementation 'com.github.javafaker:javafaker:1.0.2'
-
+    testImplementation 'com.codeborne:selenide:5.23.2'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
 
 test {
     useJUnitPlatform()
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 }
