@@ -21,17 +21,13 @@ public class DeliveryCardTest {
         open("http://localhost:9999");
     }
 
-    public String dateFormat(int days) {
-        return LocalDate.now().plusDays(days).
-                format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-    }
 
     @Test
     public void shouldSuccessfulSendValidForm() {
         Configuration.holdBrowserOpen = true;
         FormInfo info = DataGenerator.generateInfo("ru");
         $("[data-test-id='city'] input").setValue(info.getCity());
-        String date = dateFormat(8);
+        String date = DataGenerator.dateFormat(8);
         $("[data-test-id=date] input").doubleClick();
         $("[data-test-id=date] input").sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(date);
@@ -44,7 +40,7 @@ public class DeliveryCardTest {
                         Duration.ofSeconds(15));
         $(".notification__content")
                 .shouldHave(Condition.text("Встреча успешно запланирована на " + date));
-        String dateChange = dateFormat(17);
+        String dateChange = DataGenerator.dateFormat(17);
         $("[data-test-id=date] input").doubleClick();
         $("[data-test-id=date] input").sendKeys(Keys.DELETE);
         $("[data-test-id=date] input").setValue(dateChange);
